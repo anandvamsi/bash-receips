@@ -1,0 +1,8 @@
+##Phone numbers
+grep -o '([0-9]\{5\})\ [0-9]\{6\}' webpage.html >> numbers.txt
+grep -o '[0-9]\{5\}\ [0-9]\{6\}' webpage.html >> numbers.txt
+grep -o '([0-9]\{5\})[0-9]\{5\}' webpage.html >> numbers.txt
+
+
+#Email ids
+grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"  webpage.html > emails.txt
