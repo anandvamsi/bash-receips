@@ -1,0 +1,86 @@
+Solution1:-
+
+#!/bin/bash
+
+>numbers.txt
+
+##Phone numbers
+grep -o '([0-9]\{5\})\ [0-9]\{6\}' webpage.html >> numbers.txt
+grep -o '[0-9]\{5\}\ [0-9]\{6\}' webpage.html >> numbers.txt
+grep -o '([0-9]\{5\})[0-9]\{5\}' webpage.html >> numbers.txt
+
+
+#Email ids
+grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"  webpage.html > emails.txt
+
+
+##Grep help
+#-E, –extended-regexp
+#-o  Only patching
+
+
+----------------------------
+root@PF1Q1ZDY:/tmp# cat average.sh
+#!/bin/bash
+>tmp
+cat user-list.txt | sed '1d' | while read line
+do
+
+        user=`echo $line | cut -d "," -f2`
+        count=`echo $line | cut -d "," -f3- | tr -s "," "\n" | awk '{sum+=$1;} END {print sum}'`
+        average=`echo print $count / 5 | perl`
+        echo "$user $average" >> tmp
+
+done
+
+cat tmp | sort -nk2 > averages.txt
+rm tmp
+-----------------------------
+root@PF1Q1ZDY:/tmp# cat wednesday.sh
+#!/bin/bash
+>tmp
+cat user-list.txt | sed '1d' | while read line
+do
+        wed_count=`echo $line | cut -d "," -f5`
+        echo $wed_count >> tmp
+done
+total=`cat tmp | awk '{sum+=$1} END {print sum}'`
+average_wednesday=`echo print $total / 10 | perl`
+echo  $average_wednesday > wednesday.txt
+rm tmp
+----------------------------------
+root@PF1Q1ZDY:/tmp# cat superuser.sh
+#!/bin/bash
+>tmp
+cat user-list.txt | sed '1d' | while read line
+do
+        user=`echo $line | cut -d "," -f2`
+        digit=`echo $user | rev | cut -c1`
+        mod=$(($digit % 2))
+        if [ $mod -eq 0 ]
+        then
+            count=`echo $line | cut -d "," -f3- | tr -s "," "\n" | awk '{sum+=$1;} END {print sum}'`
+            average=`echo print $count / 5 | perl`
+            echo $average >> tmp
+         fi
+
+done
+total_hrs=`cat tmp  | awk '{sum+=$1} END {print sum}'`
+average=`echo print $total_hrs / 5 | perl`
+echo $average > superuser.txt
+rm tmp
+-----------------------------
+root@PF1Q1ZDY:/tmp# cat login.sh
+#!/bin/bash
+>tmp
+cat user-list.txt | sed '1d' | while read line
+do
+
+        user=`echo $line | cut -d "," -f2`
+        mon_hr=`echo $line | cut -d "," -f3`
+        [ $mon_hr -gt 0 ]&& echo "$user" >> tmp
+
+done
+cat tmp | sort -nk1.5 > login.txt
+rm tmp
+--------------------------------
