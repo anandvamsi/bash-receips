@@ -84,3 +84,55 @@ done
 cat tmp | sort -nk1.5 > login.txt
 rm tmp
 --------------------------------
+
+
+
+
+
+
+
+
+>>>
+
+1.1 and 1.2
+Grep is in build with regular expression  where we can parse the required pattern from an inputfiles.
+In this case of phone numbers we specify the count of the digits in accordance phone number pattern.
+Even special symbols also be incorperated to parse the required pattern from the inputfile
+
+-E flag is the functionlity for extented Grep
+-o
+
+1.2
+\b in a regular expression means "word boundary".
+match the boundary on both start and end of a word.
+
+
+2.1
+Averarge.sh
+Script will read the file ommiting the header and takes hours which from paramter
+3 onwards and add the sum ,Dividing the digits by number of days will 
+provide the average hours.
+sort command is used to sort the marks in Ascending order.
+
+2.2
+Script will read the file ommiting the header.
+Variable corresponding to wednesday is captured and saved to text file for all the 10 rows
+awk command is used to find the sum and dividing it by 10 will provide the 
+average hours with respect to wednesday
+
+2.3
+Script will read the file ommiting the header.
+SuperUser are computer by taking the modulous operator of last of characer wrt name
+this is attained by using the command rev and cut.
+if the result of mod expression is 0 then 3rd field is parsed and finally 
+computes the sum and average
+
+2.4
+Script will read the file ommiting the header.
+second and third field will be parsed and saved,if the third field is greater
+than 0 ,results will posted to output file.
+finally sort command is used to sort the names and results is saved to login.txt
+
+
+
+
