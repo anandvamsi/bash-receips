@@ -2,22 +2,22 @@ Solution1:-
 
 #!/bin/bash
 
->numbers.txt
 
 ##Phone numbers
-grep -o '([0-9]\{5\})\ [0-9]\{6\}' webpage.html >> numbers.txt
-grep -o '[0-9]\{5\}\ [0-9]\{6\}' webpage.html >> numbers.txt
-grep -o '([0-9]\{5\})[0-9]\{5\}' webpage.html >> numbers.txt
-
+grep -o '([0-9]\{5\})\ [0-9]\{6\}' webpage.html >> tmp
+grep -o '[0-9]\{5\}\ [0-9]\{6\}' webpage.html >> tmp
+grep -o '([0-9]\{5\})[0-9]\{5\}' webpage.html >> tmp
+sort tmp > numbers.txt
+rm tmp
 
 #Email ids
-grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b"  webpage.html > emails.txt
+grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{3,6}\b"  webpage.html > tmp
+sort -u tmp > emails.txt
 
 
 ##Grep help
 #-E, –extended-regexp
 #-o  Only patching
-
 
 ----------------------------
 root@PF1Q1ZDY:/tmp# cat average.sh
@@ -101,6 +101,10 @@ Even special symbols also be incorperated to parse the required pattern from the
 
 -E flag is the functionlity for extented Grep
 -o
+Sort command is used to sort the numbers and strings.
+-u flag is used to remove the duplicates from input file.
+
+
 
 1.2
 \b in a regular expression means "word boundary".
