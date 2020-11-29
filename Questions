@@ -139,4 +139,42 @@ finally sort command is used to sort the names and results is saved to login.txt
 
 
 
+------------------------------------------------
+ cat task2.2.sh
+#!/bin/bash
+ip=`grep SERVER dig_google.txt | cut -d ":" -f2 | cut -d "("  -f1 | sed 's/ //g' | cut -d "#" -f1`
+echo "$ip"
+
+
+cat task2.3.sh
+#!/bin/bash
+
+for line in $(cat urls.txt)
+do
+        echo "Do you wish to save the url $line"
+        read choice
+        echo $choice | grep -i y
+        [ $? -eq 0 ]&& echo $line >> saved_domains.txt
+
+
+cat task2.4.sh
+#!/bin/bash
+grep ^127 ips.txt >> loopback_ips.txt
+grep ^162. ips.txt  | sort -t "." -nk2 >> suspect_ips.txt
+grep ^175. ips.txt  | sort -t "." -nk2 >> suspect_ips.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
